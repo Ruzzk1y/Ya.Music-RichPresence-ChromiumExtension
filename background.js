@@ -1,7 +1,8 @@
 let port;
 chrome.storage.local.get(["sending_port"], (data) => { if (data.sending_port == null) { return } else port = data.sending_port; });
 chrome.runtime.onMessage.addListener((m, s, sR) => {
-    if (m.port) port = m.port
+    if (!m.port) return
+    port = m.port
     chrome.storage.local.set({ "sending_port": m.port })
     console.log("Port changed to: " + m.port);
 })

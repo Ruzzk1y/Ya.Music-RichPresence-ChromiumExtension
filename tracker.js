@@ -34,7 +34,7 @@ const getArtists = (artists) => {
 function sendStatus() {
     try {
         let curTrack = externalAPI.getCurrentTrack()
-        chrome.runtime.sendMessage("bdbccjihnmipdcecmnepnbaopiopnpbb", { //kphhfggecppaojfkaneoffipofbhckai
+        chrome.runtime.sendMessage(document.getElementById("DRPExtensionID").textContent, {
             title: curTrack.title,
             album_title: curTrack.album.title,
             artists: getArtists(curTrack.artists),
@@ -44,5 +44,5 @@ function sendStatus() {
             __DRP: true
         }, () => { });
     }
-    catch (err) { console.log(err); }
+    catch (err) { console.error(err); }
 }
